@@ -115,7 +115,13 @@ function renderBlockInfo({ currentHeight, blocksRemaining, estimatedDateStr }) {
         document.getElementById('current-height').textContent = currentHeight.toLocaleString();
     }
     document.getElementById('blocks-remaining').textContent = blocksRemaining.toLocaleString();
-    document.getElementById('estimated-datetime').textContent = estimatedDateStr;
+    if (typeof estimatedDateStr === 'object') {
+        document.getElementById('estimated-datetime-utc').textContent = estimatedDateStr.utc;
+        document.getElementById('estimated-datetime-local').textContent = estimatedDateStr.local + ' (your local time)';
+    } else {
+        document.getElementById('estimated-datetime-utc').textContent = estimatedDateStr;
+        document.getElementById('estimated-datetime-local').textContent = '';
+    }
 }
 
 function renderActivated() {
@@ -148,14 +154,24 @@ function renderApiNotice(isLive, lastUpdated) {
 
 function formatDatetime(timestamp) {
     const d = new Date(timestamp);
-    return d.toLocaleString('en-US', {
-        month:    'long',
-        day:      'numeric',
-        year:     'numeric',
-        hour:     'numeric',
-        minute:   '2-digit',
+    const utc = d.toLocaleString('en-US', {
+        month:     'long',
+        day:       'numeric',
+        year:      'numeric',
+        hour:      'numeric',
+        minute:    '2-digit',
+        timeZone:  'UTC',
         timeZoneName: 'short',
     }) + ' (estimate)';
+    const local = d.toLocaleString(undefined, {
+        month:     'long',
+        day:       'numeric',
+        year:      'numeric',
+        hour:      'numeric',
+        minute:    '2-digit',
+        timeZoneName: 'short',
+    });
+    return { utc, local };
 }
 
 // ── Initialisation ───────────────────────────────────────────────────────────
