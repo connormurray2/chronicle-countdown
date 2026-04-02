@@ -30,7 +30,7 @@
 
 import { Transaction, P2PKH, Script, PrivateKey } from '@bsv/sdk'
 
-const FEE = 10 // satoshis
+const FEE = 20 // satoshis
 const ACTIVATION_OUTPUT_SATOSHIS = 5000000 // 0.05 BSV
 
 const USAGE = `
