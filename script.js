@@ -116,11 +116,11 @@ function renderBlockInfo({ currentHeight, blocksRemaining, estimatedDateStr }) {
     }
     document.getElementById('blocks-remaining').textContent = blocksRemaining.toLocaleString();
     if (typeof estimatedDateStr === 'object') {
-        document.getElementById('estimated-datetime-utc').textContent = estimatedDateStr.utc;
         document.getElementById('estimated-datetime-local').textContent = estimatedDateStr.local + ' (your local time)';
+        document.getElementById('estimated-datetime-utc').textContent = estimatedDateStr.utc;
     } else {
-        document.getElementById('estimated-datetime-utc').textContent = estimatedDateStr;
-        document.getElementById('estimated-datetime-local').textContent = '';
+        document.getElementById('estimated-datetime-local').textContent = estimatedDateStr;
+        document.getElementById('estimated-datetime-utc').textContent = '';
     }
 }
 
