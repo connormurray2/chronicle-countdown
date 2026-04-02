@@ -221,7 +221,7 @@ async function fetchTxStatus(txid) {
     const data = await resp.json();
     const blockheight = data.blockheight;
     if (blockheight && blockheight > 0) {
-        return { confirmed: true, blockheight };
+        return { confirmed: true, blockheight, confirmations: data.confirmations ?? 1 };
     }
     return 'mempool';
 }
@@ -231,7 +231,6 @@ function renderTxStatus(status) {
     const card = document.querySelector('.tx-status-card');
     if (!el || !card) return;
 
-    // Clear all state classes
     card.classList.remove('tx-not-broadcast', 'tx-mempool', 'tx-confirmed');
 
     if (status === 'not_broadcast') {
@@ -241,32 +240,26 @@ function renderTxStatus(status) {
         el.textContent = 'In mempool — awaiting confirmation';
         card.classList.add('tx-mempool');
     } else if (status?.confirmed) {
-        el.textContent = `Confirmed in block ${status.blockheight.toLocaleString()}`;
+        const conf = status.confirmations;
+        el.textContent = `Confirmed in block ${status.blockheight.toLocaleString()} — ${conf.toLocaleString()} confirmation${conf === 1 ? '' : 's'}`;
         card.classList.add('tx-confirmed');
     }
 }
 
 function startTxPolling(txid) {
-    let pollingInterval = null;
-
     async function poll() {
         const errorEl = document.getElementById('tx-check-error');
         try {
             const status = await fetchTxStatus(txid);
             renderTxStatus(status);
             if (errorEl) errorEl.style.display = 'none';
-            // Stop polling once confirmed
-            if (status?.confirmed && pollingInterval) {
-                clearInterval(pollingInterval);
-                pollingInterval = null;
-            }
         } catch {
             if (errorEl) errorEl.style.display = '';
         }
     }
 
     poll();
-    pollingInterval = setInterval(poll, TX_POLL_INTERVAL);
+    setInterval(poll, TX_POLL_INTERVAL);
 }
 
 // 4.5 — Initialise tx status on page load
