@@ -1,0 +1,12 @@
+{
+  "name": "chronicle-countdown",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build-tx": "node build-tx.js"
+  },
+  "dependencies": {
+    "@bsv/sdk": "^1.1.0"
+  }
+}

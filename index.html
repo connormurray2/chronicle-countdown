@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronicle Countdown — BSV Block 943,816</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page">
+
+        <header>
+            <h1>Chronicle Activation</h1>
+            <p class="subtitle">BSV Blockchain Protocol Upgrade</p>
+        </header>
+
+        <main>
+
+            <!-- Countdown Timer -->
+            <section id="countdown-section" class="countdown-section">
+                <div class="countdown">
+                    <div class="countdown-box">
+                        <span class="countdown-value" id="days">--</span>
+                        <span class="countdown-label">days</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-box">
+                        <span class="countdown-value" id="hours">--</span>
+                        <span class="countdown-label">hours</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-box">
+                        <span class="countdown-value" id="minutes">--</span>
+                        <span class="countdown-label">minutes</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-box">
+                        <span class="countdown-value" id="seconds">--</span>
+                        <span class="countdown-label">seconds</span>
+                    </div>
+                </div>
+                <p class="estimate-label">Estimated time until activation</p>
+            </section>
+
+            <!-- Activated state (hidden until block 943,816 is reached) -->
+            <section id="activated-section" class="activated-section" style="display:none">
+                <div class="activated-badge">
+                    <div class="activated-icon">&#10003;</div>
+                    <h2>Chronicle is LIVE!</h2>
+                    <p>The BSV Blockchain Chronicle protocol upgrade has activated at block 943,816.</p>
+                </div>
+            </section>
+
+            <!-- Block Info -->
+            <section class="block-info">
+                <div class="block-stat">
+                    <span class="block-stat-label">Current Block</span>
+                    <span class="block-stat-value" id="current-height">—</span>
+                </div>
+                <div class="block-stat highlight">
+                    <span class="block-stat-label">Target Block</span>
+                    <span class="block-stat-value">943,816</span>
+                </div>
+                <div class="block-stat">
+                    <span class="block-stat-label">Blocks Remaining</span>
+                    <span class="block-stat-value" id="blocks-remaining">—</span>
+                </div>
+                <div class="block-stat wide">
+                    <span class="block-stat-label">Estimated Activation</span>
+                    <span class="block-stat-value small" id="estimated-datetime">—</span>
+                </div>
+            </section>
+
+            <!-- Activation Transaction Status (hidden until ACTIVATION_TXID is set) -->
+            <section id="activation-tx-section" style="display:none">
+                <div class="tx-status-card">
+                    <span class="tx-status-label">Activation Transaction</span>
+                    <span class="tx-status-value" id="tx-status">Checking…</span>
+                    <span class="tx-check-error" id="tx-check-error" style="display:none">Last check failed</span>
+                </div>
+            </section>
+
+            <!-- Chronicle Context -->
+            <section class="chronicle-context">
+                <h2>What is Chronicle?</h2>
+                <p>
+                    Chronicle is a major protocol upgrade to the BSV Blockchain activating at block height 943,816.
+                    It introduces the Original Transaction Digest Algorithm (OTDA) via the new
+                    <code>CHRONICLE [0x20]</code> sighash flag, expands the script number limit from 750 KB to
+                    32 MB, removes malleability restrictions for v2+ transactions, and restores nine previously
+                    disabled opcodes including <code>OP_VER</code>, <code>OP_SUBSTR</code>, <code>OP_2MUL</code>,
+                    and <code>OP_2DIV</code>.
+                </p>
+                <a href="https://docs.bsvblockchain.org/network-topology/nodes/sv-node/chronicle-release"
+                   target="_blank" rel="noopener noreferrer" class="docs-link">
+                    Read the Chronicle documentation →
+                </a>
+            </section>
+
+        </main>
+
+        <footer>
+            <div id="api-notice" class="api-notice" style="display:none">
+                Live data unavailable — showing estimate based on 600s/block average
+            </div>
+            <div class="last-updated">
+                <span id="last-updated-text">Fetching live data…</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
