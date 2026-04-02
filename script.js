@@ -3,7 +3,7 @@
 // ── Configuration ────────────────────────────────────────────────────────────
 // Set this to the activation transaction txid once the transaction is generated.
 // Leave empty ('') to hide the activation transaction status box.
-const ACTIVATION_TXID = 'b91722faffbea406986690fa430f916f625eb81eb4e57bfd55dbd54dca5e8d22';
+const ACTIVATION_TXID = 'acd2840906af9f9976bd9e1b607f10dfb640f2fbf638cab6ae509f2da0c9670f';
 
 const TARGET_BLOCK = 943816;
 const FALLBACK_BLOCK_TIME = 600; // seconds
