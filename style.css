@@ -316,6 +316,31 @@ header h1 {
     color: var(--live);
 }
 
+.tx-woc-link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent-warm);
+    text-decoration: none;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.tx-woc-link:hover {
+    text-decoration: underline;
+}
+
+.tx-bounty {
+    margin-top: 0.75rem;
+    padding: 1rem 1.5rem;
+    background: var(--surface-2);
+    border: 1px solid var(--live-border);
+    border-radius: 10px;
+    color: var(--live);
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
 .tx-check-error {
     font-size: 0.75rem;
     color: var(--text-muted);

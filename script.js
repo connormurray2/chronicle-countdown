@@ -245,9 +245,13 @@ async function fetchTxStatus(txid) {
 function renderTxStatus(status) {
     const el = document.getElementById('tx-status');
     const card = document.querySelector('.tx-status-card');
+    const wocLink = document.getElementById('tx-woc-link');
+    const bounty = document.getElementById('tx-bounty');
     if (!el || !card) return;
 
     card.classList.remove('tx-not-broadcast', 'tx-mempool', 'tx-confirmed');
+    if (wocLink) wocLink.style.display = 'none';
+    if (bounty) bounty.style.display = 'none';
 
     if (status === 'not_broadcast') {
         el.textContent = 'Not yet broadcast';
@@ -259,6 +263,11 @@ function renderTxStatus(status) {
         const conf = status.confirmations;
         el.textContent = `Confirmed in block ${status.blockheight.toLocaleString()} — ${conf.toLocaleString()} confirmation${conf === 1 ? '' : 's'}`;
         card.classList.add('tx-confirmed');
+        if (wocLink) {
+            wocLink.href = `https://whatsonchain.com/tx/${ACTIVATION_TXID}`;
+            wocLink.style.display = '';
+        }
+        if (bounty) bounty.style.display = '';
     }
 }
 
